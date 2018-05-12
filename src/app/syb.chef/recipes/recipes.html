@@ -37,7 +37,7 @@
 						<th class="h text-center text-danger">{{ 'RECIPES.DESIGNATION' | translate }}</th>
 						<!--<th class="h text-center">{{ 'RECIPES.TYPE' | translate }}</th>-->
 						<th class="h text-center">{{ 'RECIPES.CAPACITY' | translate }}</th>
-						<th class="h text-center">{{ 'RECIPES.SOURCE1' | translate }}</th>
+						<th class="h text-center width-300">{{ 'RECIPES.SOURCE1' | translate }}</th>
 						<th class="h text-center">{{ 'RECIPES.SOURCE2' | translate }}</th>
 						<th></th>
 						<th></th>
@@ -50,24 +50,26 @@
 						<!--<td><select class="form-control" [(ngModel)]="newRecipe.type" id="type" required>
 							<option *ngFor="let type of types" order=1>{{type}}</option>    
 						</select></td>-->
-						<td><input type="number" name="capacity" id="capacity"  [(ngModel)]="newRecipe.capacity" placeholder="capacity" class="form-control text-center" required></td>
-						<td><input type="string" name="source1" id="source1"  [(ngModel)]="newRecipe.source1" placeholder="source1" class="form-control text-left" ></td>
-						<td><input type="string" name="source2" id="source2"  [(ngModel)]="newRecipe.source2" placeholder="source2" class="form-control text-left" ></td>
+						<td><input type="number" name="capacity" id="capacity"        [(ngModel)]="newRecipe.capacity" placeholder="capacity" class="form-control text-center" required></td>
+						<td><input type="string" name="source1" id="source1"          [(ngModel)]="newRecipe.source1" placeholder="source1" class="form-control text-left" ></td>
+						<td><input type="string" name="source2" id="source2"          [(ngModel)]="newRecipe.source2" placeholder="source2" class="form-control text-left" ></td>
 						<td class="o">
 							<button class="btn btn-primary" *ngIf=" (newRecipe.designation!=null) && (newRecipe.capacity!=null) && currentUser.admin" (click)="create()"><i  class="fa fa-plus"></i></button>
 						</td><td></td>
 						<td></td>
+						<td></td>
 					</tr>
 					<tr class="recipe"  *ngFor="let recipe of recipesList | recipesfilter:filter as result">
 						<ng-container *ngIf="!editRecipes.includes(recipe); else editTD">
-						  <td></td>
-						  <td class="text-left">{{recipe.designation }} </td>
-						  <!--<td class="text-center">{{recipe.type }} </td>-->
-						  <td class="text-center">{{recipe.capacity}}</td>
-						  <td class="text-left">{{recipe.source1}}</td>
-						  <td class="text-left">{{recipe.source2}}</td>
+							<td></td>
+							<td><input type="string" name="designation" id="designation"  [(ngModel)]="recipe.designation" placeholder="" class="form-control text-left" disabled></td>
+							<!--<select class="form-control" [(ngModel)]="recipe.type" id="type" disabled>
+								<option *ngFor="let type of types" order=1>{{type}}</option>    
+							</select>-->
+							<td><input type="string" name="capacity" id="capacity"        [(ngModel)]="recipe.capacity" placeholder="" class="form-control text-center" disabled></td>
+							<td><input type="string" name="source1" id="source1"          [(ngModel)]="recipe.source1" placeholder="" class="form-control text-left" disabled></td>
+							<td><input type="string" name="source2" id="source2"          [(ngModel)]="recipe.source2" placeholder="" class="form-control text-left" disabled></td>
 						</ng-container>
-
 						<ng-template #editTD>
 							<td></td>
 							<td><input type="string" name="designation" id="designation"  [(ngModel)]="recipe.designation" placeholder="designation" class="form-control text-left" disabled></td>
@@ -77,7 +79,6 @@
 							<td><input type="string" name="capacity" id="capacity"  [(ngModel)]="recipe.capacity" placeholder="capacity" class="form-control text-center" required></td>
 							<td><input type="string" name="source1" id="source1"  [(ngModel)]="recipe.source1" placeholder="source1" class="form-control text-left" ></td>
 							<td><input type="string" name="source2" id="source2"  [(ngModel)]="recipe.source2" placeholder="source2" class="form-control text-left" ></td>
-				
 						</ng-template>
 
 						<td class="o">
