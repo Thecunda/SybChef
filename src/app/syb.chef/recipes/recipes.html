@@ -7,6 +7,11 @@
 				<button class="btn btn-secondary" disabled>{{ 'RECIPES.ICE' | translate }} : {{ 'COMMON.PAGE' | translate }} - {{currentPage}} / {{totPages}}</button>
 			</div>
 			&nbsp;&nbsp;
+			<div class="input-group">
+				<span class="form-control text-center">{{ 'COMMON.LIMIT' | translate }}</span>
+				<input class="btn btn-success" [(ngModel)]="limit" (change)="getRecipes(currentPage)" id="limit" name="limit"/>
+			</div>
+			&nbsp;&nbsp;
 			<div class="btn-group" role="group" aria-label="navigation">
 				<button type="button" class="btn btn-warning" (click)="currentPage = currentPage*1-1;getRecipes(currentPage)" [disabled]="currentPage==1">{{ 'COMMON.PREV' | translate }}</button>
 				<button type="button" class="btn btn-warning" (click)="currentPage = currentPage*1+1;getRecipes(currentPage)" [disabled]="currentPage>=totPages">{{ 'COMMON.NEXT' | translate }}</button>

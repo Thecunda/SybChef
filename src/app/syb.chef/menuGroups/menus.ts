@@ -68,7 +68,7 @@ export class MenuComponent implements OnInit {
 
 	  
    makeRecipeList() {
-    this.recipeService.getRecipes(0)
+    this.recipeService.getRecipes(0,0)
       .subscribe(data => {		
 			this.recipeList = data
 		},

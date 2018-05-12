@@ -103,6 +103,7 @@
 		"NOTHING": "Nothing",
 		"TO": "to",
 		"PAGE": "Page",
+		"LIMIT": "Page size",
 		"PREV": "Previous",
 		"NEXT": "Next",
 		"NEW": "+",

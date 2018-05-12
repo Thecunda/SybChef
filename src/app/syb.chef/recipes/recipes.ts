@@ -46,8 +46,10 @@ export class RecipeComponent implements OnInit {
   editRecipes: Recipe[] = [];
   currentPage: Number; // curent pages for data retrieved data by mongoose-paginate
   totPages: Number; // Total number of pages for data retrieved data by mongoose-paginate
+  limit: number;
 
   ngOnInit(): void {
+    this.limit = 10;
     this.getRecipes(1) //load first page of 'this.limit' results
   }
 
@@ -58,11 +60,11 @@ export class RecipeComponent implements OnInit {
   }
 
   getRecipes(page) {
-    this.recipeService.getRecipes(page)
+    this.recipeService.getRecipes(page,this.limit)
     .subscribe(data => {
         this.recipesList = data.docs
-        this.totPages=Math.trunc(data.total/9)+1;
-        this.currentPage=Math.trunc(data.offset/9)+1;
+        this.totPages=Math.trunc(data.total/(this.limit-1))+1;
+        this.currentPage=Math.trunc(data.offset/(this.limit-1))+1;
         this.alertService.success(this.msg3);
       },
       error => {

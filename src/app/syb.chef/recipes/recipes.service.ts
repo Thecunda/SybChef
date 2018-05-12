@@ -25,10 +25,11 @@ export class RecipeService {
     return this.http.post(`${this.recipeUrl}`, {recipe}, {headers : headersJSON})
   }
 
-  getRecipes(page:number): Observable<any> {
+  getRecipes(page:number,limit:number): Observable<any> {
     var headersJSON = this.headersService.setHeader();// set the standard header for token identification	
-    let getUrl = this.recipeUrl+"/?page="+page;
+    let getUrl = this.recipeUrl+"/?limit="+limit+"&page="+page;
     return this.http.get(getUrl, { headers: headersJSON }).map(
+    // return this.http.post(`${this.recipeUrl}/?`, {page: page, limit: 100}, { headers: headersJSON }).map(
       res  => {
         return (res["data"]);
       }
