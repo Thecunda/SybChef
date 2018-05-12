@@ -1,0 +1,78 @@
+<app-navbar></app-navbar>
+<alert></alert>
+<h4 class="card-header">
+	<div class="row">
+		<div class= "btn-toolbar" role= "toolbar" aria-label= "test" >
+			<div class="btn-group" role="group" aria-label="title">
+				<button class="btn btn-secondary" disabled>{{ 'RECIPEPREPAS.ICE' | translate }}</button>
+			</div>
+			&nbsp;&nbsp;
+			<div class="btn-group" role="group" aria-label="title">
+				<button class="btn btn-success disabled" >{{ idRecipe }}</button>
+			</div>
+			 &nbsp;&nbsp;		 
+			 <div class="input-group">
+				<span class="form-control text-center">{{ 'COMMON.FILTER' | translate }}</span>
+				<input class="btn btn-info" [(ngModel)]="filter.stepNumber" id="stepNumber" name="stepNumber">
+			</div>			
+			&nbsp;&nbsp;
+			<div class="btn-group" role="group" aria-label="back">		
+			   <button class="btn btn-warning" id="back" name="back" (click)="goBack()">{{ 'COMMON.RETURN' | translate }}</button>
+			</div>
+		</div>
+	</div>
+</h4>
+<div class="container-fluid">
+	<div class="row">
+			<div class="recipePrepas" *ngIf="recipePrepasList">
+				<table class="table-sm table-striped">
+					<thead class="h">
+						<tr class="h">
+							<th class="h"></th>
+							<th class="h text-center text-danger">{{ 'RECIPEPREPAS.STEPNUMBER' | translate }}</th>
+							<th class="h text-center">{{ 'RECIPEPREPAS.ETAPE' | translate }}</th>
+							<th class="h"></th>
+							<th class="h"></th>
+						</tr>
+					</thead>
+					<tbody>	
+						<tr class="h" *ngIf="currentUser.admin">
+							<td><button type="button" class="btn btn-secondary"><i  class="fa fa-plus"></i></button></td>
+							<td><input type="number" name="stepNumber" id="stepNumber"  [(ngModel)]="newRecipePrepa.stepNumber" placeholder="stepNumber" class="form-control  text-center border" required></td>
+							<td><textarea rows="3" cols="80" maxlength="210" type="string" name="etape" id="etape"  [(ngModel)]="newRecipePrepa.etape" placeholder="etape" class="form-control" required></textarea></td>
+							<td class="o">
+								<button class="btn btn-primary" *ngIf=" (newRecipePrepa.stepNumber!=null) && (newRecipePrepa.etape!=null) && currentUser.admin" (click)="create()"><i  class="fa fa-plus"></i></button>
+							</td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr class="recipePrepa"  *ngFor="let recipePrepa of recipePrepasList | recipePrepasfilter:filter as result">
+							<ng-container *ngIf="!editRecipePrepas.includes(recipePrepa); else editTD">
+							  <td></td>
+							  <td class="">{{recipePrepa.stepNumber }} </td>
+							  <td class=""><textarea rows="3" cols="80" disabled>{{recipePrepa.etape}}</textarea></td>
+							</ng-container>
+
+							<ng-template #editTD>
+								<td></td>
+								<td><input type="number" name="stepNumber" id="stepNumber"  [(ngModel)]="recipePrepa.stepNumber" placeholder="stepNumber" class="form-control text-center" disabled></td>
+								<td><textarea rows="3"  cols="80" maxlength="210" type="string" name="etape" id="etape"  [(ngModel)]="recipePrepa.etape" placeholder="etape" class="form-control" required></textarea></td>
+							</ng-template>
+
+							<td class="o">
+								<button class="btn btn-primary" (click)="editRecipePrepa(recipePrepa)" *ngIf="currentUser.admin">
+									<i  class="fa fa-pencil"></i>
+								</button>
+							</td>
+							<td class="o">
+								<button class="btn btn-danger" (click)="deleteRecipePrepa(recipePrepa)" *ngIf="currentUser.admin">
+									<i  class="fa fa-trash"></i>
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+	</div>
+</div>

@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	<!-- Brand/logo -->
+	<a class="navbar-brand" href="/"><img alt="Logo" src="../../favicon.ico"></a>
+	
+	<!-- Links -->
+	<ul class="navbar-nav">
+		<li *ngIf="currentUser != null && currentUser.admin == true" class="nav-item"><!--&& currentUser.admin == true-->
+			<a routerLink="/users" routerLinkActive="active" class="nav-link">{{ 'NAVBAR.USR' | translate }}</a>
+		</li>
+
+		<li *ngIf="currentUser != null" class="nav-item" ngbDropdown>
+			<a class="nav-link dropdown-toggle .active" id="dropdown01" ngbDropdownToggle>{{ 'NAVBAR.REFS' | translate }} </a>
+			<ul class="dropdown-menu" aria-labelledby="dropdown01" ngbDropdownMenu>
+				<li><a routerLink="/unitTypes" routerLinkActive="active" class="dropdown-item">{{ 'NAVBAR.UNITS' | translate }}</a></li>
+				<li class="divider"><hr></li>
+				<li><a routerLink="/ingredients" routerLinkActive="active" class="dropdown-item">{{ 'NAVBAR.INGREDIENTS' | translate }}</a></li>
+			</ul>
+		</li>
+		<li *ngIf="currentUser != null" class="nav-item" ngbDropdown>
+			<a class="nav-link dropdown-toggle .active" id="dropdown01" ngbDropdownToggle>{{ 'NAVBAR.RECIPES' | translate }} </a>
+			<ul class="dropdown-menu" aria-labelledby="dropdown01" ngbDropdownMenu>
+			<li><a routerLink="/recipes" routerLinkActive="active" class="dropdown-item">{{ 'NAVBAR.RECIPES' | translate }}</a></li>
+				
+			</ul>
+		</li>
+		<li *ngIf="currentUser != null" class="nav-item" ngbDropdown>
+			<a class="nav-link dropdown-toggle .active" id="dropdown01" ngbDropdownToggle>{{ 'NAVBAR.MENUS' | translate }} </a>
+			<ul class="dropdown-menu" aria-labelledby="dropdown01" ngbDropdownMenu>
+			<li><a routerLink="/menuGroups" routerLinkActive="active" class="dropdown-item">{{ 'NAVBAR.MENUS' | translate }}</a></li>
+				
+			</ul>
+		</li>
+		
+	</ul>
+	<ul class="navbar-nav ml-auto">	
+		<li *ngIf="currentUser != null" class="nav-item">
+			<a routerLink="/login" routerLinkActive="login" class="nav-link" [ngClass]="{'text-danger': (currentUser.admin == true),'text-success': (currentUser.admin == false) }">{{ 'NAVBAR.LOGOUT' | translate }} - {{currentUser.firstName}} - ({{currentUser.lang}})</a>
+		</li>	
+		
+	</ul>
+</nav>

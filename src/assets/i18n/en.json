@@ -1,0 +1,140 @@
+{
+	"LOGIN": {
+		"CNX": "Connection",
+		"ENG": "Interface in english",
+		"FR": "Interface in french",
+		"USER": "User",
+		"PSWD": "Password",
+		"MSGUO": "User is mandatory",
+		"MSGPO": "Password is mandatory",
+		"LOGIN": "Login",
+		"MSGADMDEF": "admin/admin is the default user automatically created for the first use"
+	},
+	"HOME": {
+		"ACC": "SybChef Home",
+		"INF": " You are administrator"
+	},
+	"NAVBAR": {
+		"USR": "Users",
+		"LOGOUT": "Logout",
+		"REFS": "Referential",
+		"INGREDIENTS": "Ingredients",
+		"RECIPES": "Recipes",
+		"UNITS": "Units",
+		"MENUS": "Menus"
+	},
+	"UNITTYPES": {
+		"ICE": "Units types",
+		"DESIGNATION": "Unit Type",
+		"REFERENCE": "Reference",
+		"DONOTREMOVE": "Do not remove"
+	},
+	"UNITS": {
+		"ICE": "Units",
+		"UNIT": "Unit",
+		"UNITTYPE": "Unit Type",
+		"DESIGNATION": "Name",
+		"CONVERSION": "Conversion"
+	},	
+	"INGREDIENTS": {
+		"ICE": "Ingredients",
+		"INGREDIENT": "Ingredient",
+		"DESIGNATION": "Name",
+		"UNIT": "Unité"
+	},
+	"RECIPES": {
+		"ICE": "Recipes",
+		"TYPE": "Type",
+		"DESIGNATION": "Name",
+		"CAPACITY": "Nb of persons",
+		"RECIPECOMPOS": "Ingredients",
+		"RECIPEPREPAS": "Preparation",
+		"SOURCE1": "Source 1",
+		"SOURCE2": "Source 2"
+	},
+	"RECIPECOMPOS": {
+		"ICE": "Composition",
+		"RECIPE": "Recipe",
+		"DESIGNATION": "Ingredient",
+		"CAPACITY": "Qty",
+		"UNIT": "Unit",
+		"NEW": "New ingredient"
+	},
+	"RECIPEPREPAS": {
+		"ICE": "Preparation",
+		"RECIPE": "Recipe",
+		"STEPNUMBER": "Etape",
+		"ETAPE": "Texte"
+	},
+	"MENUGROUPS":{
+		"ICE":"Menu groups",
+		"DESIGNATION":"Code",
+		"ENDED":"Ended",
+		"MENUS":"Menus",
+		"MENUGROUPAPPROS":"Shopping list"
+	},
+	"MENUS":{
+		"ICE":"Menus",
+		"DATE":"Date",
+		"RECIPE":"Recipe",
+		"NB":"# persons",
+		"MENUGROUPAPPROS":"Shopping list"
+	},
+	"MENUGROUPAPPROS":{ 
+		"ICE":"Shopping list",
+		"INGREDIENT":"Ingredients",
+		"QTY":"Qty",
+		"UNIT":"Unit"
+	},
+	"USERS": {
+		"UN": "Username",
+		"FN": "FirstName",
+		"LN": "LastName",
+		"PWD": "Password",
+		"LNG": "Preferred Language",
+		"ADM": "Admin"
+	},
+	"COMMON": {
+		"DATE": "Date",
+		"YEAR": "Year",
+		"MONTH": "Month",
+		"DAYS": "Days",
+		"ALL": "All",
+		"NOTHING": "Nothing",
+		"TO": "to",
+		"PAGE": "Page",
+		"PREV": "Previous",
+		"NEXT": "Next",
+		"NEW": "+",
+		"MOD": "Modify",
+		"DEL": "Delete",
+		"MODEL": "Model",
+		"FILTER": "Select",
+		"RETURN": "Go Back",
+		"TOTALW": "Total weight",
+		"NCLOSED": "Not finished",
+		"CLOSED": "Finished",
+		"PRINT": "Print",
+		"NOTES": "Notes",
+		"MENUS": "Menus"
+	},
+	"ERRORS": {
+		"ERR01": "Error : Duplicate key",
+		"ERR02": "date should be greater than the last input",
+		"ERR03": ":-)",
+		"ERR04": "Error : This combinaison exists alreaday",
+		"ERR05": "Error : Route is not well defined in API"
+	},
+	"Jan": "Jan",
+	"Feb": "Feb",
+	"Mar": "Mar",
+	"Apr": "Apr",
+	"May": "May",
+	"Jun": "Jun",
+	"Jul": "Jul",
+	"Aug": "Aug",
+	"Sep": "Sep",
+	"Oct": "Oct",
+	"Nov": "Nov",
+	"Dec": "Dec"
+}

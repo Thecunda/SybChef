@@ -1,0 +1,72 @@
+<app-navbar></app-navbar>
+<alert></alert>
+<h4 class="card-header">
+	<div class="row">
+		<div class= "btn-toolbar" role= "toolbar" aria-label= "test" >
+			<div class="btn-group" role="group" aria-label="title">
+				<button class="btn btn-secondary" disabled>{{ 'MENUGROUPAPPROS.ICE' | translate }}</button>
+			</div>
+			&nbsp;&nbsp;
+			<div class="btn-group" role="group" aria-label="title">
+				<button class="btn btn-success disabled" >{{ idMenuGroup }}</button>
+			</div>
+			 &nbsp;&nbsp;		 
+			 <div class="input-group">
+				<span class="form-control text-center">{{ 'COMMON.FILTER' | translate }}</span>
+				<input class="btn btn-info" [(ngModel)]="filter.ingredient" id="ingredient" name="ingredient">
+			</div>			
+			&nbsp;&nbsp;
+			<div class="btn-group" role="group" aria-label="back">		
+			   <button class="btn btn-warning" id="back" name="back" (click)="goBack()">{{ 'COMMON.RETURN' | translate }}</button>
+			</div>
+		</div>
+	</div>
+</h4>
+<div class="container-fluid" id="ShoppingList">
+	<div class="row">
+			<div class="menuGroupAppros" *ngIf="menuGroupApprosList">
+				<table class="table-sm table-striped">
+					<thead class="h">
+						<tr class="h">
+							<th class="h"></th>
+							<th class="h text-center">{{ 'MENUGROUPAPPROS.INGREDIENT' | translate }}</th>
+							<th class="h text-center">{{ 'MENUGROUPAPPROS.QTY' | translate }}</th>
+							<th class="h text-center">{{ 'MENUGROUPAPPROS.UNIT' | translate }}</th>
+							<th class="h"></th>
+							<th class="h"></th>
+						</tr>
+					</thead>
+					<tbody>	
+						
+						<tr class="menuGroupAppro"  *ngFor="let menuGroupAppro of menuGroupApprosList | menuGroupApprosfilter:filter as result">
+							<ng-container>
+							  <td></td>
+							  <td class="">{{menuGroupAppro.ingredient }} </td>
+							  <td class="">{{menuGroupAppro.qty}}</td>
+							  <td class="">{{menuGroupAppro.unit}}</td>
+							  <td class=""><input type="checkbox" name="pris" id="pris" class="xl" ></td>
+							</ng-container>
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+		<td class="o col-sm-12 text-center">
+			<a href="#" (click)="printShoppingList(idMenuGroup, 'ShoppingList')" class="btn btn-warning">{{ 'COMMON.PRINT' | translate }}</a>
+		</td>
+	</div>
+</div>
+
+
+
+
+
+
+
+

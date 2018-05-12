@@ -1,0 +1,9 @@
+<app-navbar *ngIf="currentUser"></app-navbar>
+<alert></alert>
+<div>
+    <h1>{{ 'HOME.ACC' | translate }}</h1>
+	<div *ngIf="currentUser.admin==true">
+		<p >{{ 'HOME.INF' | translate }}</p>
+	</div>
+   
+</div>

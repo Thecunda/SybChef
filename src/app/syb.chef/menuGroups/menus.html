@@ -1,0 +1,91 @@
+<app-navbar></app-navbar>
+<alert></alert>
+<h4 class="card-header">
+	<div class="row">
+		<div class= "btn-toolbar" role= "toolbar" aria-label= "test" >
+			<div class="btn-group" role="group" aria-label="title">
+				<button class="btn btn-secondary" disabled>{{ 'MENUS.ICE' | translate }}</button>
+			</div>
+			 &nbsp;&nbsp;
+			 <div class="btn-group" role="group" aria-label="title">
+				<button class="btn btn-success" disabled>{{ idMenuGroup }}</button>
+			</div>
+			 &nbsp;&nbsp;		 
+			 <div class="input-group">
+				<span class="form-control text-center">{{ 'COMMON.FILTER' | translate }}</span>
+				<input class="btn btn-info" [(ngModel)]="filter.recipe" id="recipe" name="recipe">
+			</div>			
+			&nbsp;&nbsp;
+			<div class="btn-group" role="group" aria-label="back">		
+			   <button class="btn btn-warning" id="back" name="back" (click)="goBack()">{{ 'COMMON.RETURN' | translate }}</button>
+			</div>
+		</div>
+	</div>
+</h4>
+<div class="row">
+		<div class="menus" *ngIf="menusList">
+			<table class="table-sm table-striped">
+				<thead class="h">
+					<tr class="h">
+						<th class="h"></th>
+						<th class="h text-center text-danger">{{ 'MENUS.DATE' | translate }}</th>
+						<th class="h text-center">{{ 'MENUS.RECIPE' | translate }}</th>
+						<th class="h text-center">{{ 'MENUS.NB' | translate }}</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>	
+					<tr class="h" >
+						<td><button type="button" class="btn btn-secondary"><i  class="fa fa-plus"></i></button></td>
+						<td><input type="string" name="date" id="date"  [(ngModel)]="newMenu.date" placeholder="date" class="form-control  text-center" required></td>
+						<td><select class="form-control border-warning" [(ngModel)]="newMenu.recipe" id="recipe" required>
+							<option *ngFor="let recipe of recipeList" order=1>{{recipe.designation}}</option>    
+						</select></td>
+						<td><input type="number" name="nb" id="nb"  [(ngModel)]="newMenu.nb" placeholder="nb" class="form-control  text-center" required></td>
+						<td class="o">
+							<button class="btn btn-primary" *ngIf=" (newMenu.date!=null) && (newMenu.recipe!=null) && (newMenu.nb!=null)" (click)="create()"><i  class="fa fa-plus"></i></button>
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="menu"  *ngFor="let menu of menusList | menusfilter:filter as result">
+						<ng-container *ngIf="!editMenus.includes(menu); else editTD">
+						  <td></td>
+						  <td class="text-center">{{menu.date }} </td>
+						  <td class="text-center">{{menu.recipe}}</td>
+						  <td class="text-center">{{menu.nb}}</td>
+						</ng-container>
+
+						<ng-template #editTD>
+							<td></td>
+							<td><input type="string" name="date" id="date"  [(ngModel)]="menu.date" placeholder="date" class="form-control text-center" required></td>
+							<td><select class="form-control border-warning" [(ngModel)]="menu.recipe" id="recipe" required>
+								<option *ngFor="let recipe of recipeList" order=1>{{recipe.designation}}</option>    
+							</select></td>
+							<td><input type="number" name="nb" id="nb"  [(ngModel)]="menu.nb" placeholder="nb" class="form-control text-center" required></td>
+						</ng-template>
+						
+						<td class="o">
+							<button class="btn btn-primary" (click)="editMenu(menu)">
+								<i  class="fa fa-pencil"></i>
+							</button>
+						</td>
+						<td class="o">
+							<button class="btn btn-danger" (click)="deleteMenu(menu)">
+								<i  class="fa fa-trash"></i>
+							</button>
+						</td>
+						
+					</tr>
+				</tbody>
+			</table>	
+		</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<td class="o col-sm-12 text-center">
+			<a [routerLink]="['/menuGroupAppros', idMenuGroup]" [routerLinkActive]="[active]" class="btn btn-info ">{{ 'MENUS.MENUGROUPAPPROS' | translate }}</a>
+		</td>
+	</div>
+</div>

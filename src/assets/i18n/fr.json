@@ -1,0 +1,141 @@
+{
+	"LOGIN": {
+		"CNX": "Connexion",
+		"ENG": "Interface en anglais",
+		"FR": "Interface en français",
+		"USER": "Utilisateur",
+		"PSWD": "Mot de passe",
+		"MSGUO": "Utilisateur est obligatoire",
+		"MSGPO": "Mot de passe est obligatoire",
+		"LOGIN": "Se Connecter",
+		"MSGADMDEF": "admin/admin est l'utilisateur créé par défaut lors du premier usage"
+	},
+	"HOME": {
+		"ACC": "Accueil SybChef",
+		"INF": " Vous êtes administrateur"
+	},
+	"NAVBAR": {
+		"USR": "Utilisateurs",
+		"LOGOUT": "Deconnexion",
+		"REFS": "Referentiel",
+		"INGREDIENTS": "Ingrédients",
+		"RECIPES": "Recettes",
+		"UNITS": "Unités",
+		"MENUS": "Menus"
+	},
+	"UNITTYPES": {
+		"ICE": "Types d'unités",
+		"DESIGNATION": "Type d'unité",
+		"REFERENCE": "Unité de référence",
+		"DONOTREMOVE": "Ne pas supprimer"
+	},
+	"UNITS": {
+		"ICE": "Unités",
+		"UNIT": "Unité",
+		"UNITTYPE": "Type",
+		"DESIGNATION": "Désignation",
+		"CONVERSION": "Conversion"
+	},
+	"INGREDIENTS": {
+		"ICE": "Ingrédients",
+		"INGREDIENT": "Ingrédient",
+		"DESIGNATION": "Nom",
+		"UNIT": "Unité"
+	},
+	"RECIPES": {
+		"ICE": "Recettes",
+		"TYPE": "Type",
+		"DESIGNATION": "Nom",
+		"CAPACITY": "Nombre de personnes",
+		"RECIPECOMPOS": "Ingrédients",
+		"RECIPEPREPAS": "Préparation",
+		"SOURCE1": "Source 1",
+		"SOURCE2": "Source 2"
+	},
+	"RECIPECOMPOS": {
+		"ICE": "Composition",
+		"RECIPE": "Recette",
+		"DESIGNATION": "Ingrédient",
+		"CAPACITY": "Qty",
+		"UNIT": "Unité",
+		"NEW": "Nouvel ingrédient"
+	},
+	"RECIPEPREPAS": {
+		"ICE": "Préparation",
+		"RECIPE": "Recette",
+		"STEPNUMBER": "Etape",
+		"ETAPE": "Texte"
+	},
+	"MENUGROUPS":{
+		"ICE":"Groupe de Menus",
+		"DESIGNATION":"Code",
+		"ENDED":"Terminé",
+		"MENUS":"Menus",
+		"MENUGROUPAPPROS":"Liste de courses"
+	},
+	"MENUS":{
+		"ICE":"Menus",
+		"DATE":"Date",
+		"RECIPE":"Recette",
+		"NB":"Nb personnes",
+		"MENUGROUPAPPROS":"Liste de courses"
+	},
+	"MENUGROUPAPPROS":{ 
+		"ICE":"Liste de courses",
+		"INGREDIENT":"Ingrédients",
+		"QTY":"Qté",
+		"UNIT":"Unité"
+	},
+	"USERS": {
+		"UN": "Pseudo",
+		"FN": "Prénom",
+		"LN": "Nom",
+		"PWD": "Mot de passe",
+		"LNG": "Langue",
+		"ADM": "Admin"
+	},
+	"COMMON": {
+		"DATE": "Date",
+		"YEAR": "Année",
+		"MONTH": "Mois",
+		"DAYS": "Jours",
+		"ALL": "Tout",
+		"NOTHING": "Rien",
+		"TO": "à",
+		"PAGE": "Page",z
+		"PREV": "Précédente",
+		"NEXT": "Suivante",
+		"NEW": "+",
+		"MOD": "Modifier",
+		"DEL": "Supprimer",
+		"ENERGY": "Fluides",
+		"MODEL": "Modèle",
+		"FILTER": "Filtrer",
+		"RETURN": "Retour",
+		"TOTALW": "Poids total",
+		"NCLOSED": "En cours",
+		"CLOSED": "Terminé",
+		"PRINT": "Imprimer",
+		"NOTES": "Notes",
+		"MENUS": "Menus"
+	},
+	"ERRORS": {
+		"ERR01": "Erreur : Cette clé existe déjà",
+		"ERR02": "Erreur : La date saisie doit être la plus récente",
+		"ERR03": ":-)",
+		"ERR04": "Erreur : Combinaison déjà créé",
+		"ERR05": "Erreur : La route est mal définie dans l'API"
+	},
+	"Jan": "Jan",
+	"Feb": "Fév",
+	"Mar": "Mar",
+	"Apr": "Avr",
+	"May": "Mai",
+	"Jun": "Juin",
+	"Jul": "Juil",
+	"Aug": "Août",
+	"Sep": "Sept",
+	"Oct": "Oct",
+	"Nov": "Nov",
+	"Dec": "Déc"
+}

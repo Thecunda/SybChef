@@ -1,0 +1,99 @@
+<app-navbar></app-navbar>
+<alert></alert>
+<h4 class="card-header">
+	<div class="row">
+		<div class="btn-toolbar" role="toolbar" aria-label= "test" >
+			<div class="btn-group" role="group" aria-label="title">
+				<button class="btn btn-secondary" disabled>{{ 'RECIPES.ICE' | translate }} : {{ 'COMMON.PAGE' | translate }} - {{currentPage}} / {{totPages}}</button>
+			</div>
+			&nbsp;&nbsp;
+			<div class="btn-group" role="group" aria-label="navigation">
+				<button type="button" class="btn btn-warning" (click)="currentPage = currentPage*1-1;getRecipes(currentPage)" [disabled]="currentPage==1">{{ 'COMMON.PREV' | translate }}</button>
+				<button type="button" class="btn btn-warning" (click)="currentPage = currentPage*1+1;getRecipes(currentPage)" [disabled]="currentPage>=totPages">{{ 'COMMON.NEXT' | translate }}</button>
+			</div>
+			&nbsp;&nbsp;
+			<div class="input-group">
+				<span class="form-control text-center">{{ 'COMMON.FILTER' | translate }}</span>
+				<input class="btn btn-info" [(ngModel)]="filter.designation" id="designation" name="designation"/>
+			</div>
+			&nbsp;&nbsp;
+			<div class="btn-group" role="group" aria-label="back">		
+				<button class="btn btn-warning" id="back" name="back" (click)="goBack()">{{ 'COMMON.RETURN' | translate }}</button>
+			</div>
+		</div>
+	</div>
+</h4>
+<div class="row">
+		<div class="recipes" *ngIf="recipesList">
+			<table class="table-sm table-striped">
+				<thead class="h">
+					<tr class="h">
+						<th class="h"></th>
+						<th class="h text-center text-danger">{{ 'RECIPES.DESIGNATION' | translate }}</th>
+						<!--<th class="h text-center">{{ 'RECIPES.TYPE' | translate }}</th>-->
+						<th class="h text-center">{{ 'RECIPES.CAPACITY' | translate }}</th>
+						<th class="h text-center">{{ 'RECIPES.SOURCE1' | translate }}</th>
+						<th class="h text-center">{{ 'RECIPES.SOURCE2' | translate }}</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>	
+					<tr class="h" *ngIf="currentUser.admin">
+						<td><button type="button" class="btn btn-secondary"><i  class="fa fa-plus"></i></button></td>
+						<td><input type="string" name="designation" id="designation"  [(ngModel)]="newRecipe.designation" placeholder="designation" class="form-control  text-center" required></td>
+						<!--<td><select class="form-control" [(ngModel)]="newRecipe.type" id="type" required>
+							<option *ngFor="let type of types" order=1>{{type}}</option>    
+						</select></td>-->
+						<td><input type="number" name="capacity" id="capacity"  [(ngModel)]="newRecipe.capacity" placeholder="capacity" class="form-control  text-center" required></td>
+						<td><input type="string" name="source1" id="source1"  [(ngModel)]="newRecipe.source1" placeholder="source1" class="form-control  text-center" ></td>
+						<td><input type="string" name="source2" id="source2"  [(ngModel)]="newRecipe.source2" placeholder="source2" class="form-control  text-center" ></td>
+						<td class="o">
+							<button class="btn btn-primary" *ngIf=" (newRecipe.designation!=null) && (newRecipe.capacity!=null) && currentUser.admin" (click)="create()"><i  class="fa fa-plus"></i></button>
+						</td><td></td>
+						<td></td>
+					</tr>
+					<tr class="recipe"  *ngFor="let recipe of recipesList | recipesfilter:filter as result">
+						<ng-container *ngIf="!editRecipes.includes(recipe); else editTD">
+						  <td></td>
+						  <td class="text-center">{{recipe.designation }} </td>
+						  <!--<td class="text-center">{{recipe.type }} </td>-->
+						  <td class="text-center">{{recipe.capacity}}</td>
+						  <td class="text-center">{{recipe.source1}}</td>
+						  <td class="text-center">{{recipe.source2}}</td>
+						</ng-container>
+
+						<ng-template #editTD>
+							<td></td>
+							<td><input type="string" name="designation" id="designation"  [(ngModel)]="recipe.designation" placeholder="designation" class="form-control text-left" disabled></td>
+							<!--<select class="form-control" [(ngModel)]="recipe.type" id="type" required>
+								<option *ngFor="let type of types" order=1>{{type}}</option>    
+							</select>-->
+							<td><input type="string" name="capacity" id="capacity"  [(ngModel)]="recipe.capacity" placeholder="capacity" class="form-control text-center" required></td>
+							<td><input type="string" name="source1" id="source1"  [(ngModel)]="recipe.source1" placeholder="source1" class="form-control  text-center" ></td>
+							<td><input type="string" name="source2" id="source2"  [(ngModel)]="recipe.source2" placeholder="source2" class="form-control  text-center" ></td>
+				
+						</ng-template>
+
+						<td class="o">
+							<button class="btn btn-primary" (click)="editRecipe(recipe)" *ngIf="currentUser.admin">
+								<i  class="fa fa-pencil"></i>
+							</button>
+						</td>
+						<td class="o">
+							<button class="btn btn-danger" (click)="deleteRecipe(recipe)" *ngIf="currentUser.admin">
+								<i  class="fa fa-trash"></i>
+							</button>
+						</td>
+						<td class="o">
+							<a [routerLink]="['/recipeCompos', recipe.designation]" [routerLinkActive]="[active]" class="btn btn-info">{{ 'RECIPES.RECIPECOMPOS' | translate }}</a>
+						</td>
+						<td class="o">
+							<a [routerLink]="['/recipePrepas', recipe.designation]" [routerLinkActive]="[active]" class="btn btn-info">{{ 'RECIPES.RECIPEPREPAS' | translate }}</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+</div>

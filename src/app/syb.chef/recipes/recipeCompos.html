@@ -1,0 +1,92 @@
+<app-navbar></app-navbar>
+<alert></alert>
+<h4 class="card-header">
+	<div class="row">
+		<div class= "btn-toolbar" role= "toolbar" aria-label= "test" >
+			<div class="btn-group" role="group" aria-label="title">
+				<button class="btn btn-secondary" disabled>{{ 'RECIPECOMPOS.ICE' | translate }}</button>
+			</div>
+			 &nbsp;&nbsp;
+			 <div class="btn-group" role="group" aria-label="title">
+				<button class="btn btn-success" disabled>{{ idRecipe }}</button>
+			</div>
+			 &nbsp;&nbsp;		 
+			 <div class="input-group">
+				<span class="form-control text-center">{{ 'COMMON.FILTER' | translate }}</span>
+				<input class="btn btn-info" [(ngModel)]="filter.ingredient" id="ingredient" name="ingredient">
+			</div>			
+			&nbsp;&nbsp;
+			<div class="btn-group" role="group" aria-label="back">		
+			   <button class="btn btn-warning" id="back" name="back" (click)="goBack()">{{ 'COMMON.RETURN' | translate }}</button>
+			</div>
+		</div>
+	</div>
+</h4>
+<div class="row">
+		<div class="recipeCompos" *ngIf="recipeComposList">
+			<table class="table-sm table-striped">
+				<thead class="h">
+					<tr class="h">
+						<th class="h"></th>
+						<th class="h text-center text-danger">{{ 'RECIPECOMPOS.DESIGNATION' | translate }}</th>
+						<th class="h text-center">{{ 'RECIPECOMPOS.CAPACITY' | translate }}</th>
+						<th class="h text-center">{{ 'RECIPECOMPOS.UNIT' | translate }}</th>
+						<th class="h text-center">{{ 'RECIPECOMPOS.NEW' | translate }}</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>	
+					<tr class="h" *ngIf="currentUser.admin">
+						<td><button type="button" class="btn btn-secondary"><i  class="fa fa-plus"></i></button></td>
+						<td><select class="form-control border-warning" [(ngModel)]="newRecipeCompo.ingredient" id="ingredient" required>
+							<option *ngFor="let ingredient of ingredientsList" order=1>{{ingredient.designation}}</option>    
+						</select></td>
+						<td><input type="number" name="qty" id="qty"  [(ngModel)]="newRecipeCompo.qty" placeholder="qty" class="form-control  text-center" required></td>
+						<td><select class="form-control" [(ngModel)]="newRecipeCompo.unit" id="unit" required>
+							<option *ngFor="let unit of unitsList" order=1>{{unit.designation}}</option>    
+						</select></td>
+						<td><input type="string" name="new" id="new"  [(ngModel)]="new" placeholder="new" class="form-control  text-center"></td>
+						<td class="o">
+							<button class="btn btn-primary" *ngIf=" ((newRecipeCompo.ingredient!=null || new!=null) && (newRecipeCompo.qty!=null) && (newRecipeCompo.unit!=null) && currentUser.admin)" (click)="create()"><i  class="fa fa-plus"></i></button>
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="recipeCompo"  *ngFor="let recipeCompo of recipeComposList | recipeComposfilter:filter as result">
+
+					<ng-container *ngIf="!editRecipeCompos.includes(recipeCompo); else editTD">
+						  <td></td>
+						  <td class="text-center">{{recipeCompo.ingredient }} </td>
+						  <td class="text-center">{{recipeCompo.qty}}</td>
+						  <td class="text-center">{{recipeCompo.unit}}</td>
+						  <td></td>
+						</ng-container>
+
+						<ng-template #editTD>
+							<td></td>
+							<td><input type="string" name="ingredient" id="ingredient"  [(ngModel)]="recipeCompo.ingredient" placeholder="ingredient" class="form-control text-center" disabled></td>
+							<td><input type="number" name="qty" id="qty"  [(ngModel)]="recipeCompo.qty" placeholder="qty" class="form-control text-center" required></td>
+							<td><select class="form-control" [(ngModel)]="recipeCompo.unit" id="unit" required>
+								<option *ngFor="let unit of unitsList" order=1>{{unit.designation}}</option>    
+							</select></td>
+							<td></td>
+						</ng-template>
+
+
+						<td class="o">
+							<button class="btn btn-primary" (click)="editRecipeCompo(recipeCompo)" *ngIf="currentUser.admin">
+								<i  class="fa fa-pencil"></i>
+							</button>
+						</td>
+						<td class="o">
+							<button class="btn btn-danger" (click)="deleteRecipeCompo(recipeCompo)" *ngIf="currentUser.admin">
+								<i  class="fa fa-trash"></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+</div>

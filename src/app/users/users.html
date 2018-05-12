@@ -1,0 +1,86 @@
+<app-navbar></app-navbar>
+<alert></alert>
+<h4 class="card-header">
+<button class="btn btn-secondary">{{ 'COMMON.PAGE' | translate }} {{currentPage}} / {{totPages}}</button> 
+<div class="btn-group" role="group" aria-label="Basic example">
+  <button type="button" class="btn btn-warning" (click)="currentPage = currentPage*1-1;getUsers(currentPage)" [disabled]="currentPage==1">{{ 'COMMON.PREV' | translate }}</button>
+  <button type="button" class="btn btn-warning" (click)="currentPage = currentPage*1+1;getUsers(currentPage)" [disabled]="currentPage>=totPages">{{ 'COMMON.NEXT' | translate }}</button>
+</div>
+</h4>
+<div class="row">
+
+
+    <div class="users" *ngIf="usersList">
+      <table class="table-sm table-striped">
+        <thead class="h">
+          <tr class="h">
+		  <th class="h"></th>
+            <th class="h  text-center text-danger">{{ 'USERS.UN' | translate }}</th>
+            <th class="h  text-center">{{ 'USERS.FN' | translate }}</th>
+            <th class="h  text-center">{{ 'USERS.LN' | translate }}</th>
+            <th class="h  text-center">{{ 'USERS.PWD' | translate }}</th>
+			<th class="h  text-center">{{ 'USERS.LNG' | translate }}</th>
+            <th class="h  text-center">{{ 'USERS.ADM' | translate }}</th>
+			<th></th>
+			<th></th>
+          </tr>
+        </thead>
+        <tbody>
+		
+		<tr class="h" *ngIf="currentUser.admin == true">
+			<td><button type="button" class="btn btn-secondary"><i  class="fa fa-plus"></i></button></td>
+			<td class="text-center"><input type="text" name="username" id="username"  [(ngModel)]="newUser.username" placeholder="username" class="form-control text-center" required></td>
+			<td class="text-center"><input type="text" name="firstName" id="firstName"  [(ngModel)]="newUser.firstName" placeholder="firstName" class="form-control text-center" required></td>
+			<td class="text-center"><input type="text" name="lastName" id="lastName"  [(ngModel)]="newUser.lastName" placeholder="lastName" class="form-control text-center"required></td>
+			<td class="text-center"><input type="text" name="hash" id="hash"  [(ngModel)]="newUser.hash" placeholder="hash" class="form-control text-center" required></td>
+			<td class="text-center">
+				<select class="form-control" [(ngModel)]="newUser.lang" id="lang" required>
+					<option *ngFor="let lang of langs" >{{lang}}</option>    
+				</select>
+			</td>
+			<td class="text-center"><input type="checkbox" name="admin" id="admin"  [(ngModel)]="newUser.admin" placeholder="admin" class="form-control"></td>
+			<td class="o">
+              <button class="btn btn-primary" *ngIf="newUser.username && newUser.firstName && newUser.lastName && newUser.hash && currentUser.admin == true" (click)="create()"><i  class="fa fa-plus"></i></button>
+			</td>
+
+		</tr>
+		
+          <tr class="user" (dblclick)="editUser(user)" *ngFor="let user of usersList">
+            <ng-container *ngIf="!editUsers.includes(user); else editTD">
+              <td></td>
+			  <td class="text-center">{{user.username}}</td>
+              <td class="text-center">{{user.firstName}}</td>
+              <td class="text-center">{{user.lastName}}</td>
+              <td class="text-center"></td><!--{{user.hash}}-->
+			  <td class="text-center">{{user.lang}}</td>
+			  <td class="text-center"><input type="checkbox" [(ngModel)]="user.admin" ></td>
+            </ng-container>
+
+			<ng-template #editTD>
+				<td></td>
+				<td class="text-center"><input type="text" name="username" id="username"  [(ngModel)]="user.username" placeholder="username" class="form-control" disabled></td>
+				<td class="text-center"><input type="text" name="firstName" id="firstName"  [(ngModel)]="user.firstName" placeholder="firstName" class="form-control" required></td>
+				<td class="text-center"><input type="text" name="lastName" id="lastName"  [(ngModel)]="user.lastName" placeholder="lastName" class="form-control"required></td>
+				<td class="text-center"><input type="text" name="hash" id="hash"  [(ngModel)]="user.hash" placeholder="hash" class="form-control" required></td>
+				<td class="text-center">
+					<select class="form-control" [(ngModel)]="user.lang" id="lang" required>
+						<option *ngFor="let lang of langs" >{{lang}}</option>    
+					</select>
+				</td>
+				<td class="text-center"><input type="checkbox" name="admin" id="admin"  [(ngModel)]="user.admin" placeholder="admin" class="form-control"></td>
+			</ng-template>
+
+            <td class="o">
+              <button class="btn btn-primary" (click)="editUser(user)" *ngIf="currentUser.admin == true">
+                  <i  class="fa fa-pencil"></i>
+                </button>
+              <button class="btn btn-danger" (click)="deleteUser(user)" *ngIf="currentUser.admin == true">
+                  <i  class="fa fa-trash"></i>
+                </button>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>   
+  </div>

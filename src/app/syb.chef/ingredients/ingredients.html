@@ -1,0 +1,79 @@
+<app-navbar></app-navbar>
+<alert></alert>
+<h4 class="card-header">
+	<div class="row">
+		<div class= "btn-toolbar" role= "toolbar" aria-label= "test" >
+			<div class="btn-group" role="group" aria-label="title">
+				<button class="btn btn-secondary" disabled>{{ 'INGREDIENTS.ICE' | translate }} : {{ 'COMMON.PAGE' | translate }} - {{currentPage}} / {{totPages}}</button>
+			</div>
+			&nbsp;&nbsp;
+			<div class="btn-group" role="group" aria-label="navigation">
+				  <button type="button" class="btn btn-warning" (click)="currentPage = currentPage*1-1;getIngredients(currentPage)" [disabled]="currentPage==1">{{ 'COMMON.PREV' | translate }}</button>
+				  <button type="button" class="btn btn-warning" (click)="currentPage = currentPage*1+1;getIngredients(currentPage)" [disabled]="currentPage>=totPages">{{ 'COMMON.NEXT' | translate }}</button>
+			 </div>
+			 &nbsp;&nbsp;		 
+			 <div class="input-group">
+				<span class="form-control text-center">{{ 'COMMON.FILTER' | translate }}</span>
+				<input class="btn btn-info" [(ngModel)]="filter.designation" id="designation" name="designation">
+			</div>			
+			&nbsp;&nbsp;
+			<div class="btn-group" role="group" aria-label="back">		
+			   <button class="btn btn-warning" id="back" name="back" (click)="goBack()">{{ 'COMMON.RETURN' | translate }}</button>
+			</div>
+		</div>
+	</div>
+</h4>
+<div class="row">
+		<div class="ingredients" *ngIf="ingredientsList">
+			<table class="table-sm table-striped">
+				<thead class="h">
+					<tr class="h">
+						<th class="h"></th>
+	
+						<th class="h text-center text-danger">{{ 'INGREDIENTS.DESIGNATION' | translate }}</th>
+						
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>	
+					<tr class="h" *ngIf="currentUser.admin">
+						<td><button type="button" class="btn btn-secondary"><i  class="fa fa-plus"></i></button></td>
+						
+						<td><input type="string" name="designation" id="designation"  [(ngModel)]="newIngredient.designation" placeholder="designation" class="form-control  text-center" ></td>
+						<td class="o">
+							<button class="btn btn-primary" *ngIf=" (newIngredient.designation!=null) && currentUser.admin" (click)="create()"><i  class="fa fa-plus"></i></button>
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="ingredient"  *ngFor="let ingredient of ingredientsList | ingredientsfilter:filter as result">
+						<ng-container *ngIf="!editIngredients.includes(ingredient); else editTD">
+						  <td></td>
+						 
+						  <td class="text-center">{{ingredient.designation }} </td>
+						</ng-container>
+
+						<ng-template #editTD>
+							<td></td>
+						
+							<td><input type="string" name="designation" id="designation"  [(ngModel)]="ingredient.designation" placeholder="designation" class="form-control text-center" ></td>
+						</ng-template>
+
+
+						<td class="o">
+							<button class="btn btn-primary" (click)="editIngredient(ingredient)" *ngIf="currentUser.admin">
+								<i  class="fa fa-pencil"></i>
+							</button>
+						</td>
+						<td class="o">
+							<button class="btn btn-danger" (click)="deleteIngredient(ingredient)" *ngIf="currentUser.admin">
+								<i  class="fa fa-trash"></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+</div>
